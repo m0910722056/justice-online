@@ -13,7 +13,9 @@
             min-height: 100vh;
             font-family: "Noto Serif TC", "楷體", "KaiTi", "標楷體", serif;
             padding: 20px;
+            margin: 0;
         }
+        
         .container {
             display: flex; flex-direction: column; align-items: center;
             gap: 24px; 
@@ -32,18 +34,15 @@
             display: grid; grid-template-columns: repeat(2, 1fr);
             gap: 12px; width: 100%;
         }
-        @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { 
+            .grid { grid-template-columns: 1fr; } 
+        }
         
         .cell {
             position: relative; width: 100%; 
             overflow: hidden; background: #1c1c2e; border-radius: 12px;
-            border: 1px solid #2a2a3e; transition: all 0.3s ease;
-            cursor: pointer;
+            border: 1px solid #2a2a3e; 
             aspect-ratio: auto; 
-        }
-        .cell:hover {
-            transform: scale(1.02); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.8);
-            z-index: 10; border-color: #d4c49a;
         }
         
         .cell img {
@@ -72,28 +71,6 @@
         .price-original { text-decoration: line-through; color: #b08d7a; font-size: 15px; font-weight: 500; margin-right: 6px; }
         .price-special { color: #ffd966; font-size: 18px; font-weight: 700; }
         .currency { font-size: 11px; color: #b8a87d; margin-left: 2px; letter-spacing: 0; }
-        
-        .link-row {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; margin-top: 10px;
-        }
-        @media (max-width: 600px) { .link-row { grid-template-columns: repeat(2, 1fr); } }
-
-        .link-btn {
-            display: block; background: #22223a; color: #d4c49a; text-align: center;
-            padding: 12px 8px; border-radius: 8px; border: 1px solid #3a3a5a;
-            text-decoration: none; font-size: 14px; font-weight: 600;
-            transition: all 0.3s ease; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-        }
-        .link-btn:hover {
-            background: #3a3a5a; border-color: #d4c49a; transform: translateY(-2px);
-        }
-        .iframe-container {
-            width: 100%; height: 600px; margin-top: 10px; border-radius: 12px;
-            overflow: hidden; background: #14141e; border: 1px solid #2a2a3e;
-            display: none;
-        }
-        .iframe-container iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
@@ -102,16 +79,20 @@
         
         <div class="grid">
             
-            <!-- 1. 雲夢螢星 -->
-            <div class="cell" onclick="openFrame('frame1')">
-                <img src="https://nie.res.netease.com/r/pic/20250403/fc2c7d1b-6787-4f97-a7fa-b8d5c9e6076c.png" alt="雲夢螢星">
+            <!-- 1. 雲夢螢星 (含雙重保險：官方圖讀不到，自動換成 Google 雲端圖) -->
+            <div class="cell">
+                <img src="https://nie.res.netease.com/r/pic/20250403/fc2c7d1b-6787-4f97-a7fa-b8d5c9e6076c.png" 
+                     alt="雲夢螢星" 
+                     onerror="this.src='https://drive.google.com/uc?export=view&id=15SLuBrlGARC5BkT7COKCdiDOH2NFOy5_'; this.onerror=null;">
                 <div class="label-name">雲夢螢星</div>
                 <div class="label-price"><span class="price-normal">2880</span><span class="currency">紋玉</span></div>
             </div>
             
-            <!-- 2. 雪月凌風 -->
-            <div class="cell" onclick="openFrame('frame2')">
-                <img src="https://nie.res.netease.com/r/pic/20241106/16903014-89e0-49d9-8ebc-8b3e06c44769.jpg" alt="雪月凌風">
+            <!-- 2. 雪月凌風 (含雙重保險) -->
+            <div class="cell">
+                <img src="https://nie.res.netease.com/r/pic/20241106/16903014-89e0-49d9-8ebc-8b3e06c44769.jpg" 
+                     alt="雪月凌風" 
+                     onerror="this.src='https://drive.google.com/uc?export=view&id=1ZxuZy48kLmc_2ZUc8wyyhX4qwn8l-Q0o'; this.onerror=null;">
                 <div class="label-name">雪月凌風</div>
                 <div class="label-price">
                     <span class="price-original">680</span>
@@ -120,46 +101,25 @@
                 </div>
             </div>
 
-            <!-- 3. 洛神芳藹 -->
-            <div class="cell" onclick="openFrame('frame3')">
-                <img src="https://nie.res.netease.com/r/pic/20250408/0b77fb30-4475-4c65-9a11-88ecd15d6055.jpg" alt="洛神芳藹">
+            <!-- 3. 洛神芳藹 (含雙重保險) -->
+            <div class="cell">
+                <img src="https://nie.res.netease.com/r/pic/20250408/0b77fb30-4475-4c65-9a11-88ecd15d6055.jpg" 
+                     alt="洛神芳藹" 
+                     onerror="this.src='https://drive.google.com/uc?export=view&id=17Po0MSIrO74W5XoWqkgOl5F_1-DolLcU'; this.onerror=null;">
                 <div class="label-name">洛神芳藹</div>
                 <div class="label-price"><span class="price-normal">280</span><span class="currency">紋玉</span></div>
             </div>
 
-            <!-- 4. 珊枝琢浪 -->
-            <div class="cell" onclick="openFrame('frame4')">
-                <img src="https://nie.res.netease.com/r/pic/20250114/080af74b-8d92-4046-bb4b-1d06a7fc6630.png" alt="珊枝琢浪">
+            <!-- 4. 珊枝琢浪 (含雙重保險) -->
+            <div class="cell">
+                <img src="https://nie.res.netease.com/r/pic/20250114/080af74b-8d92-4046-bb4b-1d06a7fc6630.png" 
+                     alt="珊枝琢浪" 
+                     onerror="this.src='https://drive.google.com/uc?export=view&id=1V9duhKAIBjB0psvqKWfZ3mboJhFDmT5V'; this.onerror=null;">
                 <div class="label-name">珊枝琢浪</div>
                 <div class="label-price"><span class="price-normal">2880</span><span class="currency">紋玉</span></div>
             </div>
 
         </div>
-
-        <div class="link-row">
-            <button class="link-btn" onclick="openFrame('frame1')">🔗 雲夢螢星 官網</button>
-            <button class="link-btn" onclick="openFrame('frame2')">🔗 雪月凌風 官網</button>
-            <button class="link-btn" onclick="openFrame('frame3')">🔗 洛神芳藹 官網</button>
-            <button class="link-btn" onclick="openFrame('frame4')">🔗 珊枝琢浪 官網</button>
-        </div>
-
-        <div id="frame1" class="iframe-container"><iframe src="https://h.163.com/news/official/20250403/37231_1224877.html"></iframe></div>
-        <div id="frame2" class="iframe-container"><iframe src="https://h.163.com/news/official/20241106/37231_1191650.html"></iframe></div>
-        <div id="frame3" class="iframe-container"><iframe src="https://h.163.com/news/official/20250408/37231_1225662.html"></iframe></div>
-        <div id="frame4" class="iframe-container"><iframe src="https://h.163.com/news/official/20250122/37231_1208496.html"></iframe></div>
-
     </div>
-
-    <script>
-        function openFrame(id) {
-            const frames = document.querySelectorAll('.iframe-container');
-            frames.forEach(frame => frame.style.display = 'none');
-            const target = document.getElementById(id);
-            if(target) {
-                target.style.display = 'block';
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-    </script>
 </body>
 </html>
